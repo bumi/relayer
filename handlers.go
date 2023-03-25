@@ -38,7 +38,7 @@ var upgrader = websocket.Upgrader{
 	CheckOrigin:     func(r *http.Request) bool { return true },
 }
 
-func (s *Server) handleWebsocket(w http.ResponseWriter, r *http.Request) {
+func (s *Server) HandleWebsocket(w http.ResponseWriter, r *http.Request) {
 	store := s.relay.Storage()
 	advancedDeleter, _ := store.(AdvancedDeleter)
 	advancedQuerier, _ := store.(AdvancedQuerier)

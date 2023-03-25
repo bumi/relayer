@@ -78,9 +78,12 @@ func NewServer(addr string, relay Relay) *Server {
 		router:  mux.NewRouter(),
 		clients: make(map[*websocket.Conn]struct{}),
 	}
-	srv.router.Path("/").Headers("Upgrade", "websocket").HandlerFunc(srv.handleWebsocket)
-	srv.router.Path("/").Headers("Accept", "application/nostr+json").HandlerFunc(srv.handleNIP11)
 	return srv
+}
+
+func (s *Server) RegisterDefaultRoutes() {
+	s.router.Path("/").Headers("Upgrade", "websocket").HandlerFunc(s.HandleWebsocket)
+	s.router.Path("/").Headers("Accept", "application/nostr+json").HandlerFunc(s.handleNIP11)
 }
 
 // Router returns an http.Handler used to handle server's in-flight HTTP requests.
