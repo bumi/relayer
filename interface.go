@@ -27,6 +27,7 @@ type Relay interface {
 	AcceptEvent(*nostr.Event) bool
 	// Storage returns the relay storage implementation.
 	Storage() Storage
+	OnClientsCount(int)
 }
 
 // Auther is the interface for implementing NIP-42.

@@ -78,6 +78,16 @@ func NewServer(addr string, relay Relay) *Server {
 		router:  mux.NewRouter(),
 		clients: make(map[*websocket.Conn]struct{}),
 	}
+
+	go func() {
+		ticker := time.NewTicker(30 * time.Second)
+		for {
+			select {
+			case <-ticker.C:
+				relay.OnClientsCount(len(srv.clients))
+			}
+		}
+	}()
 	return srv
 }
 
