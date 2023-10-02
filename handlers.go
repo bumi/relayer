@@ -305,7 +305,7 @@ func (s *Server) HandleWebsocket(w http.ResponseWriter, r *http.Request) {
 	}()
 }
 
-func (s *Server) handleNIP11(w http.ResponseWriter, r *http.Request) {
+func (s *Server) HandleNIP11(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	supportedNIPs := []int{9, 11, 12, 15, 16, 20}

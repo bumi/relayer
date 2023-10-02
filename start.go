@@ -93,7 +93,7 @@ func NewServer(addr string, relay Relay) *Server {
 
 func (s *Server) RegisterDefaultRoutes() {
 	s.router.Path("/").Headers("Upgrade", "websocket").HandlerFunc(s.HandleWebsocket)
-	s.router.Path("/").Headers("Accept", "application/nostr+json").HandlerFunc(s.handleNIP11)
+	s.router.Path("/").Headers("Accept", "application/nostr+json").HandlerFunc(s.HandleNIP11)
 }
 
 // Router returns an http.Handler used to handle server's in-flight HTTP requests.
